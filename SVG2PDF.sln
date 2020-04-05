@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Svg2PdfConsoleApp", "Svg2PdfConsoleApp\Svg2PdfConsoleApp.csproj", "{1A8E95AA-EC96-4EBC-86B3-8D9295DA822F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iHawkSvg2PdfLibrary", "iHawkSvg2PdfLibrary\iHawkSvg2PdfLibrary.csproj", "{451CB6C6-00C9-47F2-84CD-1D06E8F06285}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A8E95AA-EC96-4EBC-86B3-8D9295DA822F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8E95AA-EC96-4EBC-86B3-8D9295DA822F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8E95AA-EC96-4EBC-86B3-8D9295DA822F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8E95AA-EC96-4EBC-86B3-8D9295DA822F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{451CB6C6-00C9-47F2-84CD-1D06E8F06285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451CB6C6-00C9-47F2-84CD-1D06E8F06285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451CB6C6-00C9-47F2-84CD-1D06E8F06285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451CB6C6-00C9-47F2-84CD-1D06E8F06285}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CA96CE8-B247-4C63-BE97-5DB9A2F4E7B4}
+	EndGlobalSection
+EndGlobal

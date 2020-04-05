@@ -4,13 +4,13 @@
 
 ### Demo:
 
-1. 单一SVG文件
+1. 单一SVG文件转换为单一PDF文件
 	
     	var svg = <source svg file>;
     	var pdf = <destination pdf file>;
     	iHawkSvg2PdfLibrary.Svg2Pdf.Convert(svg, pdf);
     
-2. 多个SVG文件
+2. 多个SVG文件合并成一个PDF文件
 
 		var svgs = new List<string>
 		{
@@ -19,3 +19,7 @@
 		};
 		var pdf = <destination pdf file>;
 		iHawkSvg2PdfLibrary.Svg2Pdf.Convert(svgs, pdf);
+
+### 说明：
+
+目前支持SvgGroup、SvgText、SvgPath、SvgRectangle、SvgLine等元素的转换，主要是从本职工作需要入手的，后续会不断优化和完善。
