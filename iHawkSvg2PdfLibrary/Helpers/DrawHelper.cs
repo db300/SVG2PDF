@@ -81,7 +81,12 @@ namespace iHawkSvg2PdfLibrary.Helpers
                 }
             }
 
-            graphics.DrawPath(XBrushes.Black, path);
+            if (element.Fill == SvgPaintServer.None)
+            {
+                var pen = ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth, element.StrokeLineCap, element.StrokeLineJoin);
+                graphics.DrawPath(pen, path);
+            }
+            else graphics.DrawPath(XBrushes.Black, path);
         }
 
         internal static void SvgRectangle2Pdf(SvgRectangle element, XGraphics graphics)
@@ -89,7 +94,7 @@ namespace iHawkSvg2PdfLibrary.Helpers
             if (element.Display == "none") return;
             if (element.Fill == SvgPaintServer.None)
             {
-                var pen = element.Stroke is SvgColourServer stroke ? ConvertHelper.Stroke2XPen(stroke, element.StrokeWidth) : XPens.Black;
+                var pen = ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth);
                 graphics.DrawRectangle(pen, ConvertHelper.Rectangle2XRect(element.GetRectangle()));
             }
             else
@@ -103,7 +108,7 @@ namespace iHawkSvg2PdfLibrary.Helpers
         internal static void SvgLine2Pdf(SvgLine element, XGraphics graphics)
         {
             if (element.Display == "none") return;
-            var pen = element.Stroke is SvgColourServer stroke ? ConvertHelper.Stroke2XPen(stroke, element.StrokeWidth) : XPens.Black;
+            var pen = ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth);
             graphics.DrawLine(pen, ConvertHelper.Point2XPoint(element.StartX, element.StartY), ConvertHelper.Point2XPoint(element.EndX, element.EndY));
         }
     }

@@ -10,9 +10,17 @@ namespace Svg2PdfConsoleApp
     {
         static void Main(string[] args)
         {
+            /*
             var svg = @"C:\Users\db300\source\repos\Svg2PdfConsoleApp\Svg2PdfConsoleApp\bin\Debug\000.svg";
             var pdf = @"C:\Users\db300\source\repos\Svg2PdfConsoleApp\Svg2PdfConsoleApp\bin\Debug\000.pdf";
             iHawkSvg2PdfLibrary.Svg2Pdf.Convert(svg, pdf);
+            */
+
+            /*
+            var svg = @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\000.svg";
+            var pdf = @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\000.pdf";
+            iHawkSvg2PdfLibrary.Svg2Pdf.Convert(svg, pdf);
+            */
 
             /*
             var svgs = new List<string>
@@ -25,6 +33,14 @@ namespace Svg2PdfConsoleApp
             pdf = @"C:\Users\db300\Desktop\Release\tmp\000.pdf";
             iHawkSvg2PdfLibrary.Svg2Pdf.Convert(svgs, pdf);
             */
+
+            var svgs = new List<string>
+            {
+                @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\000.svg",
+                @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\001.svg"
+            };
+            var pdf = @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\000.pdf";
+            iHawkSvg2PdfLibrary.Svg2Pdf.Convert(svgs, pdf);
 
             Console.ReadLine();
         }

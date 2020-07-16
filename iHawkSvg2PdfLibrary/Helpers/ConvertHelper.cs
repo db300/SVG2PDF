@@ -31,9 +31,50 @@ namespace iHawkSvg2PdfLibrary.Helpers
             return new XRect(Point2XPoint(rectangle.Location), Size2XSize(rectangle.Size));
         }
 
-        internal static XPen Stroke2XPen(SvgColourServer stroke, SvgUnit strokeWidth)
+        internal static XPen Stroke2XPen(SvgPaintServer stroke, SvgUnit strokeWidth)
         {
-            return stroke != null ? new XPen(Color2XColor(stroke), strokeWidth.Value) : XPens.Black;
+            var pen = stroke is SvgColourServer stroke1 ? new XPen(Color2XColor(stroke1), strokeWidth.Value) : new XPen(XColors.Black, strokeWidth.Value);
+            return pen;
+        }
+
+        internal static XPen Stroke2XPen(SvgPaintServer stroke, SvgUnit strokeWidth, SvgStrokeLineCap strokeLineCap, SvgStrokeLineJoin strokeLineJoin)
+        {
+            var pen = stroke is SvgColourServer stroke1 ? new XPen(Color2XColor(stroke1), strokeWidth.Value) : new XPen(XColors.Black, strokeWidth.Value);
+            switch (strokeLineCap)
+            {
+                case SvgStrokeLineCap.Inherit:
+                    pen.LineCap = XLineCap.Flat;
+                    break;
+                case SvgStrokeLineCap.Butt:
+                    break;
+                case SvgStrokeLineCap.Round:
+                    pen.LineCap = XLineCap.Round;
+                    break;
+                case SvgStrokeLineCap.Square:
+                    pen.LineCap = XLineCap.Square;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            switch (strokeLineJoin)
+            {
+                case SvgStrokeLineJoin.Inherit:
+                    break;
+                case SvgStrokeLineJoin.Miter:
+                    pen.LineJoin = XLineJoin.Miter;
+                    break;
+                case SvgStrokeLineJoin.Round:
+                    pen.LineJoin = XLineJoin.Round;
+                    break;
+                case SvgStrokeLineJoin.Bevel:
+                    pen.LineJoin = XLineJoin.Bevel;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(strokeLineJoin), strokeLineJoin, null);
+            }
+
+            return pen;
         }
 
         internal static XBrush Fill2XBrush(SvgColourServer fill)
@@ -43,7 +84,7 @@ namespace iHawkSvg2PdfLibrary.Helpers
 
         internal static XColor Color2XColor(SvgColourServer color)
         {
-            return XColor.FromArgb(color.Colour.ToArgb());
+            return color != null ? XColor.FromArgb(color.Colour.ToArgb()) : XColors.Black;
         }
     }
 }
