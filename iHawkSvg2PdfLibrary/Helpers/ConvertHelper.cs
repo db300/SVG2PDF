@@ -31,6 +31,11 @@ namespace iHawkSvg2PdfLibrary.Helpers
             return new XRect(Point2XPoint(rectangle.Location), Size2XSize(rectangle.Size));
         }
 
+        internal static XRect Circle2XRect(SvgUnit centerX, SvgUnit centerY, SvgUnit radius)
+        {
+            return new XRect(centerX.Value - radius.Value, centerY.Value - radius.Value, 2 * radius.Value, 2 * radius.Value);
+        }
+
         internal static XPen Stroke2XPen(SvgPaintServer stroke, SvgUnit strokeWidth)
         {
             var pen = stroke is SvgColourServer stroke1 ? new XPen(Color2XColor(stroke1), strokeWidth.Value) : new XPen(XColors.Black, strokeWidth.Value);
@@ -77,9 +82,9 @@ namespace iHawkSvg2PdfLibrary.Helpers
             return pen;
         }
 
-        internal static XBrush Fill2XBrush(SvgColourServer fill)
+        internal static XBrush Fill2XBrush(SvgPaintServer fill)
         {
-            return fill != null ? new XSolidBrush(Color2XColor(fill)) : XBrushes.Black;
+            return fill is SvgColourServer fill1 ? new XSolidBrush(Color2XColor(fill1)) : XBrushes.Black;
         }
 
         internal static XColor Color2XColor(SvgColourServer color)

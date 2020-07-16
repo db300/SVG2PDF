@@ -33,6 +33,9 @@ namespace iHawkSvg2PdfLibrary.Helpers
                     case SvgLine svgLine:
                         SvgLine2Pdf(svgLine, graphics);
                         break;
+                    case SvgCircle svgCircle:
+                        SvgCircle2Pdf(svgCircle, graphics);
+                        break;
                     default:
                         Console.WriteLine(child);
                         break;
@@ -99,7 +102,7 @@ namespace iHawkSvg2PdfLibrary.Helpers
             }
             else
             {
-                var brush = element.Fill is SvgColourServer fill ? ConvertHelper.Fill2XBrush(fill) : XBrushes.Black;
+                var brush = ConvertHelper.Fill2XBrush(element.Fill);
                 graphics.DrawRectangle(brush, ConvertHelper.Rectangle2XRect(element.GetRectangle()));
             }
 
@@ -110,6 +113,21 @@ namespace iHawkSvg2PdfLibrary.Helpers
             if (element.Display == "none") return;
             var pen = ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth);
             graphics.DrawLine(pen, ConvertHelper.Point2XPoint(element.StartX, element.StartY), ConvertHelper.Point2XPoint(element.EndX, element.EndY));
+        }
+
+        internal static void SvgCircle2Pdf(SvgCircle element, XGraphics graphics)
+        {
+            if (element.Display == "none") return;
+            if (element.Fill == SvgPaintServer.None)
+            {
+                var pen = ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth);
+                graphics.DrawEllipse(pen, ConvertHelper.Circle2XRect(element.CenterX, element.CenterY, element.Radius));
+            }
+            else
+            {
+                var brush = ConvertHelper.Fill2XBrush(element.Fill);
+                graphics.DrawEllipse(brush, ConvertHelper.Circle2XRect(element.CenterX, element.CenterY, element.Radius));
+            }
         }
     }
 }

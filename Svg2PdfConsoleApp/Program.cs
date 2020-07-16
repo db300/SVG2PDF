@@ -36,7 +36,7 @@ namespace Svg2PdfConsoleApp
 
             var svgs = new List<string>
             {
-                @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\000.svg",
+                @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\000(1).svg",
                 @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\001.svg"
             };
             var pdf = @"C:\Users\db300\Documents\WeChat Files\HawkLeng\FileStorage\File\2020-07\000.pdf";
