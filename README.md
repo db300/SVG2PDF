@@ -22,4 +22,4 @@
 
 ### 说明：
 
-目前支持SvgGroup、SvgText、SvgPath、SvgRectangle、SvgLine等元素的转换，主要是从本职工作需要入手的，后续会不断优化和完善。
+目前支持SvgGroup、SvgText、SvgPath、SvgRectangle、SvgLine、SvgCircle等元素的转换，主要是从本职工作需要入手的，后续会不断优化和完善。
