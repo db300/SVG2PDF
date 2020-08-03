@@ -84,12 +84,17 @@ namespace iHawkSvg2PdfLibrary.Helpers
                 }
             }
 
-            if (element.Fill == SvgPaintServer.None)
+            if (element.Fill != SvgPaintServer.None)
+            {
+                var brush = ConvertHelper.Fill2XBrush(element.Fill);
+                graphics.DrawPath(brush, path);
+            }
+
+            if (element.Stroke != null)
             {
                 var pen = ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth, element.StrokeLineCap, element.StrokeLineJoin);
                 graphics.DrawPath(pen, path);
             }
-            else graphics.DrawPath(XBrushes.Black, path);
         }
 
         internal static void SvgRectangle2Pdf(SvgRectangle element, XGraphics graphics)
