@@ -10,7 +10,7 @@ namespace Svg2PdfConsoleApp
     {
         static void Main(string[] args)
         {
-            args = new[] {@"C:\GitHub\SVG2PDF\Images\tiger.svg"};
+            //args = new[] {@"C:\GitHub\SVG2PDF\Images\tiger.svg"};
             if (args.Length > 0)
             {
                 Console.Out.WriteLine(args[0]);
