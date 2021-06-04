@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PdfSharp.Drawing;
 using Svg;
 using Svg.Pathing;
@@ -69,6 +65,14 @@ namespace iHawkSvg2PdfLibrary.Helpers
                             ConvertHelper.Point2XPoint(svgCubicCurveSegment.FirstControlPoint),
                             ConvertHelper.Point2XPoint(svgCubicCurveSegment.SecondControlPoint),
                             ConvertHelper.Point2XPoint(svgCubicCurveSegment.End));
+                        break;
+                    case SvgQuadraticCurveSegment svgQuadraticCurveSegment:
+                        Console.WriteLine($"{segment.GetType()}, start: {svgQuadraticCurveSegment.Start}, control: {svgQuadraticCurveSegment.ControlPoint}, end: {svgQuadraticCurveSegment.End}");
+                        var (start, control1, control2, end) = MathHelper.Quadratic2Cubic(svgQuadraticCurveSegment.Start, svgQuadraticCurveSegment.ControlPoint, svgQuadraticCurveSegment.End);
+                        path.AddBezier(ConvertHelper.Point2XPoint(start),
+                            ConvertHelper.Point2XPoint(control1),
+                            ConvertHelper.Point2XPoint(control2),
+                            ConvertHelper.Point2XPoint(end));
                         break;
                     case SvgLineSegment svgLineSegment:
                         Console.WriteLine($"{segment.GetType()}, start: {svgLineSegment.Start}, end: {svgLineSegment.End}");

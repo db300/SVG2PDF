@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Helpers\ConvertHelper.cs" />
     <Compile Include="Helpers\DrawHelper.cs" />
+    <Compile Include="Helpers\MathHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Svg2Pdf.cs" />
   </ItemGroup>
