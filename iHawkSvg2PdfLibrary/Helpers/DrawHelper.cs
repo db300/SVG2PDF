@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using PdfSharp.Drawing;
 using Svg;
 using Svg.Pathing;
@@ -49,7 +50,8 @@ namespace iHawkSvg2PdfLibrary.Helpers
         internal static void SvgPath2Pdf(SvgPath element, XGraphics graphics)
         {
             if (element.Display == "none") return;
-            var path = new XGraphicsPath {FillMode = XFillMode.Winding};
+            var path = new XGraphicsPath { FillMode = XFillMode.Winding };
+            PointF lastEndPoint = new PointF();
             foreach (var segment in element.PathData)
             {
                 switch (segment)
@@ -57,30 +59,34 @@ namespace iHawkSvg2PdfLibrary.Helpers
                     case SvgMoveToSegment svgMoveToSegment:
                         Console.WriteLine($"{segment.GetType()}, start: {svgMoveToSegment.Start}, end: {svgMoveToSegment.End}");
                         path.StartFigure();
+                        lastEndPoint = svgMoveToSegment.End;
                         break;
                     case SvgCubicCurveSegment svgCubicCurveSegment:
-                        Console.WriteLine(
-                            $"{segment.GetType()}, start: {svgCubicCurveSegment.Start}, first control: {svgCubicCurveSegment.FirstControlPoint}, second control: {svgCubicCurveSegment.SecondControlPoint}, end: {svgCubicCurveSegment.End}");
-                        path.AddBezier(ConvertHelper.Point2XPoint(svgCubicCurveSegment.Start),
+                        Console.WriteLine($"{segment.GetType()}, start: {svgCubicCurveSegment.Start}, first control: {svgCubicCurveSegment.FirstControlPoint}, second control: {svgCubicCurveSegment.SecondControlPoint}, end: {svgCubicCurveSegment.End}");
+                        path.AddBezier(ConvertHelper.Point2XPoint(/*svgCubicCurveSegment.Start*/lastEndPoint),
                             ConvertHelper.Point2XPoint(svgCubicCurveSegment.FirstControlPoint),
                             ConvertHelper.Point2XPoint(svgCubicCurveSegment.SecondControlPoint),
                             ConvertHelper.Point2XPoint(svgCubicCurveSegment.End));
+                        lastEndPoint = svgCubicCurveSegment.End;
                         break;
                     case SvgQuadraticCurveSegment svgQuadraticCurveSegment:
                         Console.WriteLine($"{segment.GetType()}, start: {svgQuadraticCurveSegment.Start}, control: {svgQuadraticCurveSegment.ControlPoint}, end: {svgQuadraticCurveSegment.End}");
-                        var (start, control1, control2, end) = MathHelper.Quadratic2Cubic(svgQuadraticCurveSegment.Start, svgQuadraticCurveSegment.ControlPoint, svgQuadraticCurveSegment.End);
+                        var (start, control1, control2, end) = MathHelper.Quadratic2Cubic(/*svgQuadraticCurveSegment.Start*/lastEndPoint, svgQuadraticCurveSegment.ControlPoint, svgQuadraticCurveSegment.End);
                         path.AddBezier(ConvertHelper.Point2XPoint(start),
                             ConvertHelper.Point2XPoint(control1),
                             ConvertHelper.Point2XPoint(control2),
                             ConvertHelper.Point2XPoint(end));
+                        lastEndPoint = svgQuadraticCurveSegment.End;
                         break;
                     case SvgLineSegment svgLineSegment:
                         Console.WriteLine($"{segment.GetType()}, start: {svgLineSegment.Start}, end: {svgLineSegment.End}");
-                        path.AddLine(ConvertHelper.Point2XPoint(svgLineSegment.Start), ConvertHelper.Point2XPoint(svgLineSegment.End));
+                        path.AddLine(ConvertHelper.Point2XPoint(/*svgLineSegment.Start*/lastEndPoint), ConvertHelper.Point2XPoint(svgLineSegment.End));
+                        lastEndPoint = svgLineSegment.End;
                         break;
                     case SvgClosePathSegment svgClosePathSegment:
                         Console.WriteLine($"{segment.GetType()}, start: {svgClosePathSegment.Start}, end: {svgClosePathSegment.End}");
                         path.CloseFigure();
+                        lastEndPoint = svgClosePathSegment.End;
                         break;
                     default:
                         Console.WriteLine(segment.GetType());
