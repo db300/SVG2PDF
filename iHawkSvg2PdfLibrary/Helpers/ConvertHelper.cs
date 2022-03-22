@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using PdfSharp.Drawing;
 using Svg;
 
@@ -34,6 +35,13 @@ namespace iHawkSvg2PdfLibrary.Helpers
         internal static XPen Stroke2XPen(SvgPaintServer stroke, SvgUnit strokeWidth)
         {
             var pen = stroke is SvgColourServer stroke1 ? new XPen(Color2XColor(stroke1), strokeWidth.Value) : new XPen(XColors.Black, strokeWidth.Value);
+            return pen;
+        }
+
+        internal static XPen Stroke2XPen(SvgPaintServer stroke, SvgUnit strokeWidth, SvgUnitCollection strokeDashArray)
+        {
+            var pen = stroke is SvgColourServer stroke1 ? new XPen(Color2XColor(stroke1), strokeWidth.Value) : new XPen(XColors.Black, strokeWidth.Value);
+            pen.DashPattern = strokeDashArray.ToList().Select(a => (double)a.Value).ToArray();
             return pen;
         }
 

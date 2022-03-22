@@ -112,7 +112,9 @@ namespace iHawkSvg2PdfLibrary.Helpers
             if (element.Display == "none") return;
             if (element.Fill == SvgPaintServer.None)
             {
-                var pen = ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth);
+                var pen = element.StrokeDashArray == null
+                    ? ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth)
+                    : ConvertHelper.Stroke2XPen(element.Stroke, element.StrokeWidth, element.StrokeDashArray);
                 graphics.DrawRectangle(pen, ConvertHelper.Rectangle2XRect(element.GetRectangle()));
             }
             else
