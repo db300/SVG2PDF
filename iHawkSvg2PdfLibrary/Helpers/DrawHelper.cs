@@ -44,7 +44,10 @@ namespace iHawkSvg2PdfLibrary.Helpers
         {
             if (element.Display == "none") return;
             if (!string.IsNullOrWhiteSpace(element.Content))
-                graphics.DrawString(element.Content, new XFont("黑体", element.FontSize), XBrushes.Black, ConvertHelper.Rectangle2XRect(element.Bounds), XStringFormats.TopLeft);
+            {
+                var font = string.IsNullOrWhiteSpace(element.FontFamily) ? new XFont("黑体", element.FontSize) : new XFont(element.FontFamily, element.FontSize);
+                graphics.DrawString(element.Content, font, XBrushes.Black, ConvertHelper.Rectangle2XRect(element.Bounds), XStringFormats.TopLeft);
+            }
         }
 
         internal static void SvgPath2Pdf(SvgPath element, XGraphics graphics)
