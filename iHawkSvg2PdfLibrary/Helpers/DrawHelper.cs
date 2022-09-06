@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using PdfSharp.Drawing;
 using Svg;
@@ -8,6 +9,8 @@ namespace iHawkSvg2PdfLibrary.Helpers
 {
     internal static class DrawHelper
     {
+        private static Dictionary<string, XFont> _fontDict = new Dictionary<string, XFont> { };
+
         internal static void SvgGroup2Pdf(SvgGroup element, XGraphics graphics)
         {
             if (element.Display == "none") return;
@@ -45,7 +48,27 @@ namespace iHawkSvg2PdfLibrary.Helpers
             if (element.Display == "none") return;
             if (!string.IsNullOrWhiteSpace(element.Content))
             {
-                var font = string.IsNullOrWhiteSpace(element.FontFamily) ? new XFont("黑体", element.FontSize) : new XFont(element.FontFamily, element.FontSize);
+                var fontKey = $"{element.FontFamily}|{element.FontSize}";
+                XFont font;
+                if (_fontDict.ContainsKey(fontKey))
+                {
+                    font = _fontDict[fontKey];
+                }
+                else
+                {
+                    try
+                    {
+                        font = string.IsNullOrWhiteSpace(element.FontFamily) ? new XFont("黑体", element.FontSize) : new XFont(element.FontFamily, element.FontSize);
+                    }
+                    catch (Exception ex)
+                    {
+#if DEBUG
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+#endif
+                        font = new XFont("黑体", element.FontSize);
+                    }
+                    _fontDict.Add(fontKey, font);
+                }
                 graphics.DrawString(element.Content, font, XBrushes.Black, ConvertHelper.Rectangle2XRect(element.Bounds), XStringFormats.TopLeft);
             }
         }
