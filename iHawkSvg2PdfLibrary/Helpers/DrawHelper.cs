@@ -9,7 +9,7 @@ namespace iHawkSvg2PdfLibrary.Helpers
 {
     internal static class DrawHelper
     {
-        private static Dictionary<string, XFont> _fontDict = new Dictionary<string, XFont> { };
+        private readonly static Dictionary<string, XFont> _fontDict = new Dictionary<string, XFont> { };
 
         internal static void SvgGroup2Pdf(SvgGroup element, XGraphics graphics)
         {
@@ -59,6 +59,10 @@ namespace iHawkSvg2PdfLibrary.Helpers
                     try
                     {
                         font = string.IsNullOrWhiteSpace(element.FontFamily) ? new XFont("黑体", element.FontSize) : new XFont(element.FontFamily, element.FontSize);
+#if DEBUG
+                        System.Diagnostics.Debug.WriteLine($"目标字体：{element.FontFamily} | 实际字体：{font.Name}");
+#endif
+                        if (font.Name != element.FontFamily) font = new XFont("SimHei", element.FontSize);
                     }
                     catch (Exception ex)
                     {

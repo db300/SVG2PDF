@@ -1,4 +1,6 @@
-﻿using PdfSharpCore.Drawing;
+﻿using System;
+using System.Linq;
+using PdfSharpCore.Drawing;
 using Svg;
 
 namespace iHawkSvg2PdfLibrary.Helpers
