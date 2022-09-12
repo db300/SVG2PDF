@@ -5,7 +5,23 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>iHawkSvg2PdfLibrary</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>SVG2PDF</Title>
+    <Authors>ColdDaddy</Authors>
+    <PackageProjectUrl>https://github.com/db300/SVG2PDF</PackageProjectUrl>
+    <Description>convert svg to pdf library with .net6</Description>
+    <RepositoryUrl>https://github.com/db300/SVG2PDF</RepositoryUrl>
+    <Copyright>Copyright © ColdDaddy 2022</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="PdfSharpCore" Version="1.3.38" />
