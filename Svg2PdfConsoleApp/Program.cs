@@ -34,8 +34,9 @@ namespace Svg2PdfConsoleApp
 
                 var svgs = new List<string>
                 {
-                    @"C:\GitHub\FontStudioV1\FontStudio\bin\Debug\tmp\000.svg"
+                    //@"C:\GitHub\FontStudioV1\FontStudio\bin\Debug\tmp\000.svg"
                     //@"C:\GitHub\SVG2PDF\Svg2PdfConsoleApp\bin\Debug\000.svg"
+                    @"C:\GitHub\SVG2PDF\images\Ghostscript_Tiger.svg"
                 };
                 var pdf = "000.pdf";
                 iHawkSvg2PdfLibrary.Svg2Pdf.Convert(svgs, pdf);

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using iHawkSvg2PdfLibrary.Helpers;
-using PdfSharpCore;
-using PdfSharpCore.Drawing;
-using PdfSharpCore.Pdf;
+using PdfSharp;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 using Svg;
 
 namespace iHawkSvg2PdfLibrary

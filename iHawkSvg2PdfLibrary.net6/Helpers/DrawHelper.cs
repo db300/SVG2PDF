@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using PdfSharpCore.Drawing;
+using PdfSharp.Drawing;
 using Svg;
 using Svg.Pathing;
 
@@ -62,7 +62,7 @@ namespace iHawkSvg2PdfLibrary.Helpers
 #if DEBUG
                         System.Diagnostics.Debug.WriteLine($"目标字体：{element.FontFamily} | 实际字体：{font.Name}");
 #endif
-                        if (font.Name != element.FontFamily) font = new XFont("SimHei", element.FontSize);
+                        //if (font.Name != element.FontFamily) font = new XFont("SimHei", element.FontSize);
                     }
                     catch (Exception ex)
                     {
