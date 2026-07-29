@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PDFsharp" Version="6.1.1" />
-    <PackageReference Include="Svg" Version="3.4.7" />
+    <PackageReference Include="PDFsharp" Version="6.2.4" />
+    <PackageReference Include="Svg" Version="3.4.8" />
   </ItemGroup>
 
 </Project>
