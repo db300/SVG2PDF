@@ -60,7 +60,7 @@ namespace iHawkSvg2PdfLibrary.Helpers
                     {
                         font = string.IsNullOrWhiteSpace(element.FontFamily) ? new XFont("黑体", element.FontSize) : new XFont(element.FontFamily, element.FontSize);
 #if DEBUG
-                        System.Diagnostics.Debug.WriteLine($"目标字体：{element.FontFamily} | 实际字体：{font.Name}");
+                        System.Diagnostics.Debug.WriteLine($"目标字体：{element.FontFamily} | 实际字体：{font.Name2}");
 #endif
                         //if (font.Name != element.FontFamily) font = new XFont("SimHei", element.FontSize);
                     }
